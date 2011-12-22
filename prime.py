@@ -17,6 +17,7 @@ class Prime:
             self._getNth()
         except:
             print "Warning: No nth provided."
+            print "test sheep"
         return
 
     def _createPrime(self):
