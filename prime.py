@@ -12,6 +12,7 @@ class Prime:
             self._createPrime()
         except:
             print "Warning: No max provided"
+            print "test Yutong"
         try:
             self.nth = kargs['nth']
             self._getNth()
