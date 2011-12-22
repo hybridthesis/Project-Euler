@@ -10,14 +10,12 @@ class Prime:
             self.n_max = kargs['max']
             self.numlist = range(2, self.n_max)
             self._createPrime()
-        except Exception as ex:
-            print ex
+        except:
             print "Warning: No max provided"
         try:
             self.nth = kargs['nth']
             self._getNth()
         except:
-            print ex
             print "Warning: No nth provided."
         return
 
