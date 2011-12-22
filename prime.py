@@ -41,4 +41,4 @@ class Prime:
         self._createPrime()
         self.nth = self.primes[nth-1]
     def __iter__(self):
-        pass
+        print "HIIIIIII"
