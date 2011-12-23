@@ -1,46 +1,38 @@
 import math
-from math_func import *
 
 class Prime:
-
-
-    def __init__(self, **kargs):
-        self.primes = []
+    def __init__(self, **args):
+        self.value = 0
+        self.currentvalue = 3
+        self.primelist = [2, 3]
         try:
-            self.n_max = kargs['max']
-            self.numlist = range(2, self.n_max)
-            self._createPrime()
+            self.operation = args.keys()[0]
         except:
-            print "Warning: No max provided"
-            print "test Yutong"
-        try:
-            self.nth = kargs['nth']
-            self._getNth()
-        except:
-            print "Warning: No nth provided."
-            print "test sheep"
-        return
+            print "Warning: No operation given!"
+            self.operation = 'none'
+        return 
 
-    def _createPrime(self):
-        while len(self.numlist):
-            current_prime = self.numlist[0]
-            d = lambda x: x% current_prime
-            self.numlist = filter(d,self.numlist)
-            self.primes.append(current_prime)
-
-
-    def _getNth(self):
-        """Search for the nth prime number"""
-        nth = self.nth
-
-        t = lambda n: n/math.log(n)
-
-        i = 2
-        while t(i)<nth:
-            i = i + 1
-
-        self.numlist = range(2, i)
-        self._createPrime()
-        self.nth = self.primes[nth-1]
     def __iter__(self):
-        print "HIIIIIII"
+        return self
+
+    def next(self):
+        primeCandidate = self.currentvalue + 2
+        primeTestMax = int(math.sqrt(primeCandidate))+1
+
+        def primetest(pCandidate):
+            for i in self.primelist:
+                if i>primeTestMax: return True
+                if pCandidate % i == 0 : return False
+            return True
+        
+        while not primetest(primeCandidate):
+            primeCandidate +=2
+
+        #Congratulations! You have found your prime number =)
+        self.currentvalue = primeCandidate
+        self.primelist.append(primeCandidate)
+        return primeCandidate
+
+
+    def __repr__(self):
+        return str(self.value)
